@@ -2,7 +2,7 @@ import { Input } from 'components/PhonebookForm/PhonebookForm.styled';
 import { Label } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFilter, removeFilter } from 'redux/filterSlice';
-import { selectFilterValue } from 'redux/selectors';
+import { selectFilterValue } from 'redux/contacts/selectors';
 
 const Filter = () => {
   const filterValue = useSelector(selectFilterValue);

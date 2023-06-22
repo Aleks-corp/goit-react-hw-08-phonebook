@@ -1,19 +1,60 @@
-import Section from './Section/Section';
-import PhonebookForm from './PhonebookForm/PhonebookForm';
-import ContactsList from './ContactsList/ContactsList';
-import Filter from './Filter/Filter';
-import { Container } from './Container.styled';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { lazy, useEffect } from 'react';
+import { RestrictedRoute } from './RestrictedRoute';
+import { PrivateRoute } from './PrivateRoute';
+import { Layout } from './Layout';
+import { useDispatch, useSelector } from 'react-redux';
+import { refreshUser } from 'redux/auth/operations';
+import { selectToken } from 'redux/auth/selectors';
+
+const PhoneBookPage = lazy(() => import('pages/PhoneBook'));
+const RegisterPage = lazy(() => import('pages/Register'));
+const LoginPage = lazy(() => import('pages/Login'));
 
 export function App() {
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+
+  useEffect(() => {
+    token && dispatch(refreshUser());
+  }, [dispatch, token]);
   return (
-    <Container>
-      <Section title="Phonebook">
-        <PhonebookForm />
-      </Section>
-      <Section title="Contacts">
-        <Filter />
-        <ContactsList />
-      </Section>
-    </Container>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route
+          index
+          element={
+            <PrivateRoute
+              redirectTo="/phonebook"
+              component={<Navigate to="/login" />}
+            />
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/phonebook"
+              component={<RegisterPage />}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute
+              redirectTo="/phonebook"
+              component={<LoginPage />}
+            />
+          }
+        />
+        <Route
+          path="/phonebook"
+          element={
+            <PrivateRoute redirectTo="/login" component={<PhoneBookPage />} />
+          }
+        />
+      </Route>
+    </Routes>
   );
 }
