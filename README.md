@@ -10,3 +10,5 @@ acquainted and configure additional features
 1. Database storaged in [mockapi.io](https://mockapi.io/).
 2. App bilded with createAsyncThunk and createSlice
    [redux-toolkit](https://redux-toolkit.js.org).
+3. Styled with [Material UI](https://mui.com), the world's most popular React UI
+   framework.
