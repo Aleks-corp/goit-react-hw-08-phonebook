@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
-const instance = axios.create({
-  baseURL: 'https://goit-task-manager.herokuapp.com/',
+export const instance = axios.create({
+  baseURL: 'https://connections-api.herokuapp.com/',
 });
 
 export const setToken = token => {
@@ -18,12 +19,12 @@ export const signUp = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await instance.post('/users/signup', userData);
-      console.log('response:', response);
       setToken(response.data.token);
+      toast.success('Congratulations! You are successfully signed up!');
       return response.data;
     } catch (error) {
-      console.log('error:', error);
-      return thunkAPI.rejectWithValue(error.response);
+      toast.error(`${error.message}. Please try again.`);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -33,12 +34,12 @@ export const logIn = createAsyncThunk(
   async (userData, thunkAPI) => {
     try {
       const response = await instance.post('/users/login', userData);
-      console.log('responce:', response);
       setToken(response.data.token);
+      toast.success('You are successfully logged in!');
       return response.data;
     } catch (error) {
-      console.log('error:', error.response);
-      return thunkAPI.rejectWithValue(error.response);
+      toast.error(`${error.message}. Please try again.`);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -46,9 +47,11 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await instance.post('/users/logout');
+    toast.success('You are logged out!');
     delToken();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    toast.error(`${error.message}. Please try again.`);
+    return thunkAPI.rejectWithValue(error.response.data.message);
   }
 });
 
@@ -64,10 +67,11 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setToken(persistedToken);
-      const response = await instance.get('/users/me');
+      const response = await instance.get('/users/current');
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      toast.error(`${error.response.statusText}. Please try login.`);
+      return thunkAPI.rejectWithValue(error.response.data.message);
     }
   }
 );

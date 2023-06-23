@@ -39,7 +39,9 @@ export default function Login() {
             setPassword(e.target.value);
           }}
         />
-        <Button type="submit">Submit</Button>
+        <Button variant="outlined" type="submit">
+          Login
+        </Button>
       </form>
       <Link component={RouterLink} to="/register" underline="hover">
         Registration

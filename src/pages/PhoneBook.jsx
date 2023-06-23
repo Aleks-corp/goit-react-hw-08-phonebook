@@ -7,10 +7,10 @@ import { Container } from '../components/Container.styled';
 export default function PhoneBook() {
   return (
     <Container>
-      <Section title="Phonebook">
+      <Section title="Add new contact">
         <PhonebookForm />
       </Section>
-      <Section title="Contacts">
+      <Section title="Contacts list">
         <Filter />
         <ContactsList />
       </Section>

@@ -3,7 +3,7 @@ import { initialState } from './initialState';
 import { logIn, logOut, refreshUser, signUp } from './operations';
 
 const handleFulfilled = (state, action) => {
-  state.profile = action.payload.profile;
+  state.profile = action.payload.user;
   state.token = action.payload.token;
   state.isLoggedIn = true;
 };

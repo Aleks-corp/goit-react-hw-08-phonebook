@@ -5,7 +5,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { Layout } from './Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
-import { selectToken } from 'redux/auth/selectors';
+import { selectIsLoggedIn, selectToken } from 'redux/auth/selectors';
 
 const PhoneBookPage = lazy(() => import('pages/PhoneBook'));
 const RegisterPage = lazy(() => import('pages/Register'));
@@ -14,10 +14,11 @@ const LoginPage = lazy(() => import('pages/Login'));
 export function App() {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    token && dispatch(refreshUser());
-  }, [dispatch, token]);
+    token && !isLoggedIn && dispatch(refreshUser());
+  }, [dispatch, isLoggedIn, token]);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
