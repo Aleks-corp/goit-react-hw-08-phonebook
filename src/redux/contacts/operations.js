@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-hot-toast';
 import { instance } from 'redux/auth/operations';
 
 // const instance = axios.create({
@@ -10,9 +11,13 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await instance.get('/contacts');
+      toast.success('Contacts successfully received.');
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      toast.success(
+        `${error.message}. Please refresh page or try again later.`
+      );
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -22,9 +27,11 @@ export const addContact = createAsyncThunk(
   async (contact, thunkAPI) => {
     try {
       const response = await instance.post('/contacts', contact);
+      toast.success('Contact successfully added.');
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      toast.success(`${error.message}. Please try add again.`);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -33,9 +40,11 @@ export const deleteContact = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await instance.delete(`/contacts/${id}`);
+      toast.success('Contact successfully removed.');
       return response.data;
-    } catch (e) {
-      return thunkAPI.rejectWithValue(e.message);
+    } catch (error) {
+      toast.success(`${error.message}. Please try add again.`);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
