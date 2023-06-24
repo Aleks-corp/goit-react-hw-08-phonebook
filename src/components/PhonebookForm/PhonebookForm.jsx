@@ -1,11 +1,13 @@
 import { useState } from 'react';
-import { Form, Input, Button, Label } from './PhonebookForm.styled';
+import { Form, Input, Label } from './PhonebookForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
-import { selectContacts } from 'redux/contacts/selectors';
+import { selectContacts, selectIsLoadingAdd } from 'redux/contacts/selectors';
+import { LoadingButton } from '@mui/lab';
 
 export default function PhonebookForm() {
   const contacts = useSelector(selectContacts);
+  const isLoading = useSelector(selectIsLoadingAdd);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -68,7 +70,15 @@ export default function PhonebookForm() {
           onChange={inputContactHandler}
         />
       </Label>
-      <Button type="submit">Add contacts</Button>
+      <LoadingButton
+        size="small"
+        variant="contained"
+        type="submit"
+        loading={isLoading}
+        loadingIndicator="Loading…"
+      >
+        Add contacts
+      </LoadingButton>
     </Form>
   );
 }

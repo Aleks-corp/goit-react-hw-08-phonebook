@@ -1,18 +1,18 @@
 import ContactsItem from 'components/ContactsItem/ContactsItem';
 import { ContactsListItem, List } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact, fetchContacts } from 'redux/contacts/operations';
+import { fetchContacts } from 'redux/contacts/operations';
 import Loader from 'components/Loader';
 import {
   selectError,
   selectFilteredContacts,
-  selectIsLoading,
+  selectIsLoadingFetch,
 } from 'redux/contacts/selectors';
 import { useEffect } from 'react';
 
 const ContactsList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
-  const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoadingFetch);
   const error = useSelector(selectError);
 
   const dispatch = useDispatch();
@@ -36,7 +36,6 @@ const ContactsList = () => {
                 id={contact.id}
                 name={contact.name}
                 number={contact.number}
-                deleteContactItem={id => dispatch(deleteContact(id))}
               />
             </ContactsListItem>
           ))}

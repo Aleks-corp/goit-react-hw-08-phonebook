@@ -1,15 +1,28 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Thumb } from './ContactsItem.styled';
 import PropTypes from 'prop-types';
+import { selectIsLoadingDel } from 'redux/contacts/selectors';
+import { LoadingButton } from '@mui/lab';
+import { DeleteForever } from '@mui/icons-material';
+import { deleteContact } from 'redux/contacts/operations';
 
-const ContactsItem = ({ id, name, number, deleteContactItem }) => {
+const ContactsItem = ({ id, name, number }) => {
+  const idDelContact = useSelector(selectIsLoadingDel);
+  const dispatch = useDispatch();
   return (
     <>
       <Thumb>
         {name}: {number}
       </Thumb>
-      <button type="button" onClick={() => deleteContactItem(id)}>
-        Delete
-      </button>
+      <LoadingButton
+        size="small"
+        type="button"
+        loading={idDelContact === id}
+        variant="contained"
+        onClick={() => dispatch(deleteContact(id))}
+      >
+        <DeleteForever />
+      </LoadingButton>
     </>
   );
 };
@@ -20,5 +33,4 @@ ContactsItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
-  deleteContactItem: PropTypes.func.isRequired,
 };
