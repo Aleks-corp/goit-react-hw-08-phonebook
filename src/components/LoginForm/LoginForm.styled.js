@@ -14,11 +14,11 @@ export function LoginContainer({ children }) {
         m: 'auto',
         py: 6,
         px: 9,
-        zIndex: 1000,
         border: '1px solid #DEDBDB',
         borderRadius: '30px',
         boxShadow: '10px 10px 16px -8px rgba(0, 0, 0, 0.25)',
         width: '460px',
+        bgcolor: '#ffffff',
         alignItems: 'center',
       }}
     >
@@ -26,20 +26,6 @@ export function LoginContainer({ children }) {
     </Container>
   );
 }
-
-export const Container2 = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  padding: 24px 48px;
-  z-index: 10;
-  border: 1px solid #dedbdb;
-  border-radius: 30px;
-  box-shadow: 10px 10px 16px -8px rgba(0, 0, 0, 0.25);
-  width: 460px;
-  height: 315px;
-  align-items: center;
-`;
 
 export const Title = styled.p`
   font-size: 20px;
