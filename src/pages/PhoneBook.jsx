@@ -1,19 +1,22 @@
-import Section from '../components/Section/Section';
-import PhonebookForm from '../components/PhonebookForm/PhonebookForm';
-import ContactsList from '../components/ContactsList/ContactsList';
-import Filter from '../components/Filter/Filter';
-import { Container } from '../components/Container.styled';
+import {
+  Container,
+  ContainerPhoneList,
+  Section,
+} from 'components/Container/Container';
+import PhonebookForm from 'components/PhonebookForm/PhonebookForm';
+import ContactsList from 'components/ContactsList/ContactsList';
+import Filter from 'components/Filter/Filter';
 
 export default function PhoneBook() {
   return (
-    <Container>
-      <Section title="Add new contact">
+    <Section>
+      <Container title="Add new contact">
         <PhonebookForm />
-      </Section>
-      <Section title="Contacts list">
+      </Container>
+      <ContainerPhoneList title="Contacts list">
         <Filter />
         <ContactsList />
-      </Section>
-    </Container>
+      </ContainerPhoneList>
+    </Section>
   );
 }

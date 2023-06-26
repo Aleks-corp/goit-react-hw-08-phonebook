@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
-import { LayoutBGImage, LayoutContainer } from './Container.styled';
+import { LayoutBGImage, LayoutContainer } from './LayoutContainer.styled';
 import NavBar from './NavBar/NavBar';
 
 export const Layout = () => {

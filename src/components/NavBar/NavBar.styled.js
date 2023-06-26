@@ -5,6 +5,8 @@ export const Nav = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 32px 72px;
 `;
 
@@ -13,7 +15,7 @@ export const LogoutContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
-  padding: 32px 72px;
+
   font-size: 20px;
   font-weight: 600;
 `;

@@ -23,8 +23,16 @@ export const signUp = createAsyncThunk(
       toast.success('Congratulations! You are successfully signed up!');
       return response.data;
     } catch (error) {
-      toast.error(`${error.message}. Please try again.`);
-      return thunkAPI.rejectWithValue(error.response.data.message);
+      error.response.data.code === 11000
+        ? toast.error(
+            `Email: ${error.response.data.keyValue.email} is registered. Please try another or Login.`
+          )
+        : toast.error(
+            `${error.response.data.message ?? error.message}. Please try again.`
+          );
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
@@ -38,8 +46,10 @@ export const logIn = createAsyncThunk(
       toast.success('You are successfully logged in!');
       return response.data;
     } catch (error) {
-      toast.error(`${error.message}. Please try again.`);
-      return thunkAPI.rejectWithValue(error.response.data.message);
+      toast.error(`Email or password in not valid. Please try again.`);
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
@@ -50,8 +60,10 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     toast.success('You are logged out!');
     delToken();
   } catch (error) {
-    toast.error(`${error.message}. Please try again.`);
-    return thunkAPI.rejectWithValue(error.response.data.message);
+    toast.error(`${error.message}. Please reload page.`);
+    return thunkAPI.rejectWithValue(
+      error.response.data.message ?? error.message
+    );
   }
 });
 
@@ -62,7 +74,7 @@ export const refreshUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
+      return thunkAPI.rejectWithValue('Unable to Login');
     }
 
     try {

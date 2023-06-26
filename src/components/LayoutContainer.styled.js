@@ -2,17 +2,6 @@ import styled from 'styled-components';
 import line from '../image/objects.png';
 import elipse from '../image/Ellipse.png';
 
-export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-  font-size: 24px;
-  color: #010101;
-`;
-
 export const LayoutContainer = styled.div`
   width: 100vw;
   height: 100vh;

@@ -61,8 +61,17 @@ const contactsSlice = createSlice({
       .addCase(deleteContact.fulfilled, handleFulfilledDeleteContacts)
       .addCase(deleteContact.rejected, handleRejectedDeleteContacts)
 
-      .addMatcher(action => action.type.endsWith('pending'), handlePending)
-      .addMatcher(action => action.type.endsWith('rejected'), handleRejected);
+      .addMatcher(
+        action =>
+          action.type.endsWith('pending') && action.type.startsWith('contacts'),
+        handlePending
+      )
+      .addMatcher(
+        action =>
+          action.type.endsWith('rejected') &&
+          action.type.startsWith('contacts'),
+        handleRejected
+      );
   },
 });
 

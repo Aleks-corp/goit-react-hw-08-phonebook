@@ -1,26 +1,44 @@
-import { Input } from 'components/PhonebookForm/PhonebookForm.styled';
-import { Label } from './Filter.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addFilter, removeFilter } from 'redux/filterSlice';
 import { selectFilterValue } from 'redux/contacts/selectors';
+import { Button, FormControl, InputLabel, OutlinedInput } from '@mui/material';
 
 const Filter = () => {
   const filterValue = useSelector(selectFilterValue);
   const dispatch = useDispatch();
   return (
     <div>
-      <Label>
-        Find contacts by name
-        <Input
-          type="text"
+      <FormControl size="small" color="primary">
+        <InputLabel htmlFor="filter">Find contacts by name</InputLabel>
+        <OutlinedInput
+          size="small"
+          id="filter"
+          label="filter"
           name="filter"
+          type="text"
+          variant="outlined"
+          title="Enter contact Name or Lastname"
           value={filterValue}
           onChange={e => dispatch(addFilter(e.target.value))}
+          sx={{
+            width: '300px',
+            mb: 1,
+            mr: 2,
+          }}
         />
-      </Label>
-      <button type="reset" onClick={() => dispatch(removeFilter())}>
+      </FormControl>
+
+      <Button
+        size="small"
+        variant="contained"
+        sx={{
+          p: 1,
+        }}
+        type="reset"
+        onClick={() => dispatch(removeFilter())}
+      >
         Clear filter
-      </button>
+      </Button>
     </div>
   );
 };

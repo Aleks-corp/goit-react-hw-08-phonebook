@@ -5,10 +5,12 @@ This project was created with template base on
 acquainted and configure additional features
 [refer to documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
+You can create account and save your private PhoneBook.
+
 ## How it works
 
-1. Database storaged in [mockapi.io](https://mockapi.io/).
+1. Database storaged in [heroku.com](https://www.heroku.com).
 2. App bilded with createAsyncThunk and createSlice
    [redux-toolkit](https://redux-toolkit.js.org).
 3. Styled with [Material UI](https://mui.com), the world's most popular React UI
-   framework.
+   framework, and with [styled-components](https://styled-components.com).

@@ -22,3 +22,9 @@ export const Button = styled.button`
   display: block;
   font-size: 16px;
 `;
+
+export const ButtonBox = styled.div`
+  width: 250px;
+  margin: 0 auto;
+  margin-top: 20px;
+`;
