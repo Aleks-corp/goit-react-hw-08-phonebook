@@ -13,9 +13,6 @@ export const StyledLink = styled(NavLink)`
   font-size: 15px;
   color: #265dba;
   text-decoration: none;
-  &.active {
-    color: orange;
-  }
 `;
 export const ButtonBox = styled.div`
   width: 150px;

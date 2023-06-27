@@ -10,6 +10,7 @@ import { selectIsLoggedIn, selectToken } from 'redux/auth/selectors';
 const PhoneBookPage = lazy(() => import('pages/PhoneBook'));
 const RegisterPage = lazy(() => import('pages/Register'));
 const LoginPage = lazy(() => import('pages/Login'));
+const ErrorPage = lazy(() => import('pages/Error'));
 
 export function App() {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ export function App() {
             <PrivateRoute redirectTo="/login" component={<PhoneBookPage />} />
           }
         />
+        <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>
   );
