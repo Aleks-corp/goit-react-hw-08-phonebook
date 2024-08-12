@@ -31,11 +31,12 @@ const ContactsList = () => {
       {filteredContacts.length !== 0 && !isLoading && !error && (
         <List>
           {filteredContacts.map(contact => (
-            <ContactsListItem key={contact.id}>
+            <ContactsListItem key={contact._id}>
               <ContactsItem
-                id={contact.id}
+                id={contact._id}
                 name={contact.name}
-                number={contact.number}
+                phone={contact.phone}
+                email={contact.email}
               />
             </ContactsListItem>
           ))}
