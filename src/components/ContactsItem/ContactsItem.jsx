@@ -7,7 +7,7 @@ import { DeleteForever } from '@mui/icons-material';
 import { deleteContact } from 'redux/contacts/operations';
 import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
 
-const ContactsItem = ({ id, name, phone }) => {
+const ContactsItem = ({ id, name, phone, email }) => {
   const idDelContact = useSelector(selectIsLoadingDel);
   const dispatch = useDispatch();
   return (
@@ -22,6 +22,7 @@ const ContactsItem = ({ id, name, phone }) => {
         {name}
       </Thumb>
       <Thumb>{phone}</Thumb>
+      <Thumb>{email}</Thumb>
       <LoadingButton
         type="button"
         loading={idDelContact === id}
