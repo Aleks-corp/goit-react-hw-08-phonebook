@@ -13,7 +13,8 @@ const handlePendingFetchContacts = state => {
   state.isLoadingFetch = true;
 };
 const handleFulfilledFetchContacts = (state, action) => {
-  state.contactsList = action.payload;
+  state.contactsList = action.payload.contacts;
+  state.totalHits = action.payload.totalHits
   state.isLoadingFetch = false;
 };
 const handleRejectedFetchContacts = state => {
