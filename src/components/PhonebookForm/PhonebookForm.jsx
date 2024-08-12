@@ -12,7 +12,8 @@ export default function PhonebookForm() {
   const isLoading = useSelector(selectIsLoadingAdd);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
 
   const inputContactHandler = e => {
     const { name, value } = e.target;
@@ -20,8 +21,11 @@ export default function PhonebookForm() {
       case 'name':
         setName(value);
         break;
-      case 'number':
-        setNumber(value);
+        case 'email':
+        setEmail(value);
+        break;
+      case 'phone':
+        setPhone(value);
         break;
       default:
         return;
@@ -39,12 +43,13 @@ export default function PhonebookForm() {
       return;
     }
 
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ name, phone, email }));
     reset();
   };
   const reset = () => {
     setName('');
-    setNumber('');
+    setPhone('');
+    setEmail('');
   };
 
   return (
@@ -73,18 +78,41 @@ export default function PhonebookForm() {
         color="primary"
         sx={{ mt: '20px' }}
       >
-        <InputLabel htmlFor="number">Number</InputLabel>
+        <InputLabel htmlFor="phone">Phone</InputLabel>
         <OutlinedInput
-          id="number"
-          label="Number"
-          name="number"
+          id="phone"
+          label="Phone"
+          name="phone"
           type="tel"
           variant="outlined"
           inputProps={{
             pattern: '[^a-zA-Zа-яА-Я]*',
           }}
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={number}
+          value={phone}
+          onChange={inputContactHandler}
+        />
+      </FormControl>
+
+            <FormControl
+        fullWidth
+        required
+        size="small"
+        color="primary"
+        sx={{ mt: '20px' }}
+      >
+        <InputLabel htmlFor="email">Email</InputLabel>
+        <OutlinedInput
+          id="email"
+          label="Email"
+          name="email"
+          type="email"
+          variant="outlined"
+          inputProps={{
+            pattern: '[^a-zA-Zа-яА-Я]*',
+          }}
+          title="Please set email correctly"
+          value={email}
           onChange={inputContactHandler}
         />
       </FormControl>
