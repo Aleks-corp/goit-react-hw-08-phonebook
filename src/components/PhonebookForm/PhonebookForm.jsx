@@ -109,7 +109,7 @@ export default function PhonebookForm() {
           type="email"
           variant="outlined"
           inputProps={{
-            pattern: '[^a-zA-Zа-яА-Я]*',
+            pattern: '^[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$',
           }}
           title="Please set email correctly"
           value={email}
