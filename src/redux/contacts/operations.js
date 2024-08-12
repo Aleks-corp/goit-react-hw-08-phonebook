@@ -43,7 +43,7 @@ export const deleteContact = createAsyncThunk(
       toast.success('Contact successfully removed.');
       return response.data;
     } catch (error) {
-      toast.success(`${error.message}. Please try add again.`);
+      toast.success(`${error.message}. Please try remove again.`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
