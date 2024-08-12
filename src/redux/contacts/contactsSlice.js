@@ -37,7 +37,7 @@ const handlePendingDeleteContacts = (state, action) => {
 };
 const handleFulfilledDeleteContacts = (state, action) => {
   state.contactsList = state.contactsList.filter(
-    contact => contact.id !== action.payload.id
+    contact => contact._id !== action.payload.id
   );
   state.contactDelId = false;
 };
