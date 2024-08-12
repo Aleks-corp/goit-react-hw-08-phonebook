@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
 export const instance = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com/',
+  baseURL: 'https://phonebook-goit-project.onrender.com/',
 });
 
 export const setToken = token => {
@@ -18,7 +18,7 @@ export const signUp = createAsyncThunk(
   'auth/signup',
   async (userData, thunkAPI) => {
     try {
-      const response = await instance.post('/users/signup', userData);
+      const response = await instance.post('/users/register', userData);
       setToken(response.data.token);
       toast.success('Congratulations! You are successfully signed up!');
       return response.data;
