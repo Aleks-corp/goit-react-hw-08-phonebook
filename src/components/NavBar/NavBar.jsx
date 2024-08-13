@@ -7,7 +7,7 @@ import {
 import { logOut } from 'redux/auth/operations';
 
 import logo from 'image/Logo.png';
-import { LogoutContainer, Nav, UserEmail } from './NavBar.styled';
+import { LogoutContainer, Nav, UserAvatar, UserEmail } from './NavBar.styled';
 import { LoadingButton } from '@mui/lab';
 
 export default function NavBar() {
@@ -19,7 +19,12 @@ export default function NavBar() {
     <Nav>
       <img src={logo} alt="PhoneBook" width="250" />
       <LogoutContainer>
-        {profile && <UserEmail>{profile.email}</UserEmail>}
+        {profile && (
+          <>
+            <UserAvatar src={profile.avatarURL} alt="user avatar" />
+            <UserEmail>{profile.email}</UserEmail>
+          </>
+        )}
         {isLoggedIn && (
           <LoadingButton
             loading={isLoading}

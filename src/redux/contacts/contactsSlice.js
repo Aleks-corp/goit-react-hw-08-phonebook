@@ -14,7 +14,7 @@ const handlePendingFetchContacts = state => {
 };
 const handleFulfilledFetchContacts = (state, action) => {
   state.contactsList = action.payload.contacts;
-  state.totalHits = action.payload.totalHits
+  state.totalHits = action.payload.totalHits;
   state.isLoadingFetch = false;
 };
 const handleRejectedFetchContacts = state => {
@@ -37,10 +37,11 @@ const handlePendingDeleteContacts = (state, action) => {
 };
 const handleFulfilledDeleteContacts = (state, action) => {
   state.contactsList = state.contactsList.filter(
-    contact => contact._id !== action.payload
+    contact => contact._id !== state.contactDelId
   );
   state.contactDelId = false;
 };
+
 const handleRejectedDeleteContacts = state => {
   state.contactDelId = false;
 };

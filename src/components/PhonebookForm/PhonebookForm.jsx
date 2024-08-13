@@ -21,7 +21,7 @@ export default function PhonebookForm() {
       case 'name':
         setName(value);
         break;
-        case 'email':
+      case 'email':
         setEmail(value);
         break;
       case 'phone':
@@ -94,7 +94,7 @@ export default function PhonebookForm() {
         />
       </FormControl>
 
-            <FormControl
+      <FormControl
         fullWidth
         required
         size="small"
@@ -109,7 +109,7 @@ export default function PhonebookForm() {
           type="email"
           variant="outlined"
           inputProps={{
-            pattern: '^[a-zA-Z0-9_.±]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$',
+            pattern: '^[\\w]+@+[a-z]+.+[a-z]$',
           }}
           title="Please set email correctly"
           value={email}

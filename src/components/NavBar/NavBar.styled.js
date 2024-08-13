@@ -23,3 +23,9 @@ export const LogoutContainer = styled.div`
 export const UserEmail = styled.p`
   margin-right: 20px;
 `;
+
+export const UserAvatar = styled.img`
+  width: 24px;
+  margin-right: 5px;
+  border-radius: 5px;
+`;
